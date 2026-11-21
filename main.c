@@ -115,7 +115,33 @@ int escolher_tipo(void) {
     return tipo;
 }
 
-void *ler_dado(int tipo) { return NULL; }
+void *ler_dado(int tipo) {
+    switch (tipo) {
+        case TIPO_INT: {
+            int *p = (int *) malloc(sizeof(int));
+            printf("Digite o inteiro: ");
+            scanf("%d", p);
+            return p;
+        }
+        case TIPO_STRING: {
+            char buffer[100];
+            printf("Digite o texto: ");
+            scanf(" %99[^\n]", buffer);
+            char *p = (char *) malloc(strlen(buffer) + 1);
+            strcpy(p, buffer);
+            return p;
+        }
+        case TIPO_ALUNO: {
+            Aluno *p = (Aluno *) malloc(sizeof(Aluno));
+            printf("Nome: ");
+            scanf(" %49[^\n]", p->nome);
+            printf("RA: ");
+            scanf("%d", &p->ra);
+            return p;
+        }
+    }
+    return NULL;
+}
 
 No *criar_no(int tipo, void *dados) {
     No *novo = (No *) malloc(sizeof(No));
