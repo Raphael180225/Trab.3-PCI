@@ -62,8 +62,9 @@ int main(void) {
 
             case 2: {
                 int tipo = escolher_tipo();
-                void *chaves = ler_dado(tipo);
-                cabeca = remover(cabeca,tipo,dado);
+                void *chave = ler_dado(tipo);
+                cabeca = remover(cabeca, tipo, chave);
+                free(chave);
                 break;
             }
             case 3: {
@@ -94,8 +95,38 @@ int main(void) {
                 printf("Opcao invalida!\n");
     }
 } while (opcao != 0);
-{
+
     cabeca = liberar_lista(cabeca);
     return 0;
 
+}
+
+//Rapha
+int escolher_tipo(void) { return 1; }
+
+void *ler_dado(int tipo) { return NULL; }
+
+No *inserir_fim(No *cabeca, int tipo, void *dados) {
+    return cabeca;
+}
+
+void imprimir_lista(No *cabeca) { }
+
+
+
+//Lucas
+int buscar(No *cabeca, int tipo, void *chave) {
+    return -1;
+}
+
+No *remover(No *cabeca, int tipo, void *chave) {
+    return cabeca;
+}
+
+No *liberar_lista(No *cabeca) { return cabeca; }
+
+void salvar_lista(No *cabeca, const char *arquivo) { }
+
+No *carregar_lista(No *cabeca, const char *arquivo) {
+    return cabeca;
 }
