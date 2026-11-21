@@ -207,9 +207,6 @@ void imprimir_lista(No *cabeca) {
 
 
 //Lucas
-int buscar(No *cabeca, int tipo, void *chave) {
-    return -1;
-}
 
 No *remover(No *cabeca, int tipo, void *chave) {
     return cabeca;
@@ -221,4 +218,28 @@ void salvar_lista(No *cabeca, const char *arquivo) { }
 
 No *carregar_lista(No *cabeca, const char *arquivo) {
     return cabeca;
+}
+
+int comparar(No *no, int tipo, void *chave) {
+    if (no->tipo != tipo) {
+        return 0;
+    }
+    switch (tipo) {
+        case TIPO_INT:
+            return *((int *) no->dados) == *((int *) chave);
+        case TIPO_STRING:
+            return strcmp((char *) no->dados,
+                          (char *) chave) == 0;
+        case TIPO_ALUNO: {
+            Aluno *a = (Aluno *) no->dados;
+            Aluno *b = (Aluno *) chave;
+            return a->ra == b->ra &&
+                   strcmp(a->nome, b->nome) == 0;
+        }
+    }
+    return 0;
+}
+
+int buscar(No *cabeca, int tipo, void *chave) {
+    return -1;
 }
