@@ -241,5 +241,14 @@ int comparar(No *no, int tipo, void *chave) {
 }
 
 int buscar(No *cabeca, int tipo, void *chave) {
+    int pos = 0;
+    No *atual = cabeca;
+    while (atual != NULL) {
+        if (comparar(atual, tipo, chave)) {
+            return pos;
+        }
+        atual = atual->proximo;
+        pos++;
+    }
     return -1;
 }
