@@ -252,3 +252,4 @@ int buscar(No *cabeca, int tipo, void *chave) {
     }
     return -1;
 }
+
