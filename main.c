@@ -171,8 +171,25 @@ No *inserir_fim(No *cabeca, int tipo, void *dados) {
     return cabeca;
 }
 
-void imprimir_lista(No *cabeca) { }
+void imprimir_no(No *no) {
+    switch (no->tipo) {
+        case TIPO_INT:
+            printf("[int] %d", *((int *) no->dados));
+            break;
+        case TIPO_STRING:
+            printf("[texto] %s", (char *) no->dados);
+            break;
+        case TIPO_ALUNO: {
+            Aluno *a = (Aluno *) no->dados;
+            printf("[aluno] %s (RA %d)", a->nome, a->ra);
+            break;
+        }
+        default:
+            printf("[tipo desconhecido]");
+    }
+}
 
+void imprimir_lista(No *cabeca) { }
 
 
 //Lucas
