@@ -189,7 +189,21 @@ void imprimir_no(No *no) {
     }
 }
 
-void imprimir_lista(No *cabeca) { }
+void imprimir_lista(No *cabeca) {
+    if (cabeca == NULL) {
+        printf("Lista vazia.\n");
+        return;
+    }
+    int pos = 0;
+    No *atual = cabeca;
+    while (atual != NULL) {
+        printf("%d: ", pos);
+        imprimir_no(atual);
+        printf("\n");
+        atual = atual->proximo;
+        pos++;
+    }
+}
 
 
 //Lucas
