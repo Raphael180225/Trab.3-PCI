@@ -36,3 +36,66 @@ No *liberar_lista(No *cabeca);
 void salvar_lista(No *cabeca, const char *arquivo);
 No *carregar_lista(No *cabeca, const char *arquivo);
 
+int main(void) {
+    No *cabeca = NULL;
+    int opcao;
+
+    do {
+         printf("\n=== LISTA ENCADEADA ===\n");
+        printf("1 - Inserir\n");
+        printf("2 - Remover\n");
+        printf("3 - Buscar\n");
+        printf("4 - Imprimir\n");
+        printf("5 - Salvar em arquivo\n");
+        printf("6 - Carregar do arquivo\n");
+        printf("0 - Sair\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+
+        switch(opcao){
+            case 1: {
+                int tipo = escolher_tipo();
+                void *dado = ler_dado(tipo);
+                cabeca = inserir_fim(cabeca,tipo,dado);
+                break;
+            }
+
+            case 2: {
+                int tipo = escolher_tipo();
+                void *chaves = ler_dado(tipo);
+                cabeca = remover(cabeca,tipo,dado);
+                break;
+            }
+            case 3: {
+                int tipo = escolher_tipo();
+                void *chave = ler_dado(tipo);
+                int pos = buscar(cabeca, tipo, chave);
+                if (pos == -1) {
+                    printf("Nao encontrado.\n");
+                } else {
+                    printf("Achei na posicao %d.\n", pos);
+                }
+                free(chave);
+                break;
+            }
+            case 4:
+                imprimir_lista(cabeca);
+                break;
+            case 5:
+                salvar_lista(cabeca, ARQUIVO);
+                break;
+            case 6:
+                cabeca = carregar_lista(cabeca, ARQUIVO);
+                break;
+            case 0:
+                printf("Encerrando...\n");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+    }
+} while (opcao != 0);
+{
+    cabeca = liberar_lista(cabeca);
+    return 0;
+
+}
