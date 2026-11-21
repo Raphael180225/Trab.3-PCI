@@ -119,6 +119,18 @@ No *criar_no(int tipo, void *dados) {
 }
 
 No *inserir_fim(No *cabeca, int tipo, void *dados) {
+    No *novo = criar_no(tipo, dados);
+    if (novo == NULL) {
+        return cabeca;
+    }
+    if (cabeca == NULL) {
+        return novo;
+    }
+    No *atual = cabeca;
+    while (atual->proximo != NULL) {
+        atual = atual->proximo;
+    }
+    atual->proximo = novo;
     return cabeca;
 }
 
