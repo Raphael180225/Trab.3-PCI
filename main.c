@@ -102,7 +102,18 @@ int main(void) {
 }
 
 //Rapha
-int escolher_tipo(void) { return 1; }
+int escolher_tipo(void) {
+    int tipo;
+    do {
+        printf("\nTipo do dado:\n");
+        printf("1 - Inteiro\n");
+        printf("2 - Texto\n");
+        printf("3 - Aluno (nome e RA)\n");
+        printf("Escolha: ");
+        scanf("%d", &tipo);
+    } while (tipo < 1 || tipo > 3);
+    return tipo;
+}
 
 void *ler_dado(int tipo) { return NULL; }
 
