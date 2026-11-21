@@ -106,6 +106,18 @@ int escolher_tipo(void) { return 1; }
 
 void *ler_dado(int tipo) { return NULL; }
 
+No *criar_no(int tipo, void *dados) {
+    No *novo = (No *) malloc(sizeof(No));
+    if (novo == NULL) {
+        printf("Erro: sem memoria!\n");
+        return NULL;
+    }
+    novo->proximo = NULL;
+    novo->tipo = tipo;
+    novo->dados = dados;
+    return novo;
+}
+
 No *inserir_fim(No *cabeca, int tipo, void *dados) {
     return cabeca;
 }
