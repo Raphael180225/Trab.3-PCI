@@ -209,6 +209,28 @@ void imprimir_lista(No *cabeca) {
 //Lucas
 
 No *remover(No *cabeca, int tipo, void *chave) {
+    No *anterior = NULL;
+    No *atual = cabeca;
+
+    while (atual != NULL && !comparar(atual, tipo, chave)) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    if (atual == NULL) {
+        printf("Elemento nao encontrado.\n");
+        return cabeca;
+    }
+
+    if (anterior == NULL) {
+        cabeca = atual->proximo;
+    } else {
+        anterior->proximo = atual->proximo;
+    }
+
+    free(atual->dados);
+    free(atual);
+    printf("Elemento removido.\n");
     return cabeca;
 }
 
