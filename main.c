@@ -257,7 +257,23 @@ int tamanho_dado(No *no) {
     return 0;
 }
 
-void salvar_lista(No *cabeca, const char *arquivo) { }
+void salvar_lista(No *cabeca, const char *arquivo) {
+    FILE *arq = fopen(arquivo, "wb");
+    if (arq == NULL) {
+        printf("Erro ao criar o arquivo.\n");
+        return;
+    }
+    No *atual = cabeca;
+    while (atual != NULL) {
+        int tamanho = tamanho_dado(atual);
+        fwrite(&atual->tipo, sizeof(int), 1, arq);
+        fwrite(&tamanho, sizeof(int), 1, arq);
+        fwrite(atual->dados, tamanho, 1, arq);
+        atual = atual->proximo;
+    }
+    fclose(arq);
+    printf("Lista salva em %s\n", arquivo);
+}
 
 No *carregar_lista(No *cabeca, const char *arquivo) {
     return cabeca;
