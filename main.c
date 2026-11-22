@@ -234,7 +234,16 @@ No *remover(No *cabeca, int tipo, void *chave) {
     return cabeca;
 }
 
-No *liberar_lista(No *cabeca) { return cabeca; }
+No *liberar_lista(No *cabeca) {
+    No *atual = cabeca;
+    while (atual != NULL) {
+        No *proximo = atual->proximo;
+        free(atual->dados);
+        free(atual);
+        atual = proximo;
+    }
+    return NULL;
+}
 
 void salvar_lista(No *cabeca, const char *arquivo) { }
 
