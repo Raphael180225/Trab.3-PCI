@@ -276,6 +276,24 @@ void salvar_lista(No *cabeca, const char *arquivo) {
 }
 
 No *carregar_lista(No *cabeca, const char *arquivo) {
+    FILE *arq = fopen(arquivo, "rb");
+    if (arq == NULL) {
+        printf("Arquivo %s nao encontrado.\n", arquivo);
+        return cabeca;
+    }
+
+    cabeca = liberar_lista(cabeca);
+
+    int tipo, tamanho;
+    while (fread(&tipo, sizeof(int), 1, arq) == 1 &&
+           fread(&tamanho, sizeof(int), 1, arq) == 1) {
+        void *dados = malloc(tamanho);
+        fread(dados, tamanho, 1, arq);
+        cabeca = inserir_fim(cabeca, tipo, dados);
+    }
+
+    fclose(arq);
+    printf("Lista carregada de %s\n", arquivo);
     return cabeca;
 }
 
