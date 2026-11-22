@@ -245,6 +245,18 @@ No *liberar_lista(No *cabeca) {
     return NULL;
 }
 
+int tamanho_dado(No *no) {
+    switch (no->tipo) {
+        case TIPO_INT:
+            return sizeof(int);
+        case TIPO_STRING:
+            return strlen((char *) no->dados) + 1;
+        case TIPO_ALUNO:
+            return sizeof(Aluno);
+    }
+    return 0;
+}
+
 void salvar_lista(No *cabeca, const char *arquivo) { }
 
 No *carregar_lista(No *cabeca, const char *arquivo) {
